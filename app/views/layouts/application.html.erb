@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trailgram</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <%= javascript_pack_tag 'Index' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        Trailgram
+      <% end %>
+      <div class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-default navbar-btn" %>
+        <% else %>
+          <%= link_to "Log In", new_user_session_path, class: "btn btn-default navbar-btn" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-default navbar-btn" %>
+        <% end %>
+      </div>
+    </nav>
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <ul>
+         <li><%= msg %></li>
+        </ul>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

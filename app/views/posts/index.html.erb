@@ -1,0 +1,14 @@
+<div class="container">
+<table>
+ <tr>
+  <th>Title</th>
+  <th>Description</th>
+ </tr>
+ <% @posts.each do |post| %>
+ <tr>
+  <td><%= post.title %></td>
+  <td><%= post.body %></td>
+ </tr>
+ <% end %>
+</table>
+</div>
